@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, TextInput,Text, Button, View, Alert, Platform} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-import {IconSymbol} from "@/components/ui/icon-symbol";
+import {Alert, Button, FlatList, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import Octicons from "@expo/vector-icons/Octicons";
 
@@ -15,6 +14,12 @@ const TextInputExample = () => {
     const [studentName, onChangeStudentName] = React.useState('');
     const [studentCode, onChangeStudentCode] = React.useState('');
     const [students, setStudents] = React.useState<Student[]>([]);
+
+    const Item = ({title}) => (
+        <View style={styles.item}>
+            <Text style={styles.title}>{title}</Text>
+        </View>
+    );
 
     const createStudent = async () => {
         try {
@@ -114,11 +119,11 @@ const TextInputExample = () => {
                     <View style={buttonstyles.buttonContainer}>
                         <Button onPress={getStudents} title="Fetch Students" />
                     </View>
-                    {students.map((student) => (
-                        <Text key={student.id}>
-                            {student.studentName}, {student.studentCode}
-                        </Text>
-                    ))}
+                    <FlatList
+                        data={students}
+                        renderItem={({item}) => <Item title={item.studentName || ' - ' || item.studentCode || ''} />}
+                        keyExtractor={item => item.id}
+                    />
 
                 </SafeAreaView>
             </SafeAreaProvider>
@@ -133,6 +138,18 @@ const styles = StyleSheet.create(
             margin: 12,
             borderWidth: 1,
             padding: 10,
+        },
+        container: {
+            flex: 1
+        },
+        item: {
+            backgroundColor: '#f9c2ff',
+            padding: 20,
+            marginVertical: 8,
+            marginHorizontal: 16,
+        },
+        title: {
+            fontSize: 32,
         },
     });
 const buttonstyles = StyleSheet.create({

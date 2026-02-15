@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Button, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Alert, Button, Platform, StyleSheet, Text, TextInput, View,Image} from 'react-native';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -114,10 +114,13 @@ const TextInputExample = () => {
                         <Button onPress={getteachers} title="Fetch teachers" />
                     </View>
                     {teachers.map((teacher) => (
-                        <Text key={teacher.id}>
-                            {teacher.teacherName}, {teacher.teacherCode}
-                        </Text>
+                        <View key={teacher.id}>
+                            <FontAwesome6 name="person-chalkboard" size={24} color="#D0D0D0" >
+                            <Text style={{ color: 'white' }}>   {teacher.teacherName} </Text>
+                                </FontAwesome6>
+                        </View>
                     ))}
+
 
                 </SafeAreaView>
             </SafeAreaProvider>
