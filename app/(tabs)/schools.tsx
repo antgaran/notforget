@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, TextInput,Text, Button, View, Alert, Platform} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-import {IconSymbol} from "@/components/ui/icon-symbol";
+import {Alert, Button, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import ParallaxScrollView from "@/components/parallax-scroll-view";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 type School = {
     id: number;
@@ -91,12 +91,7 @@ const TextInputExample = () => {
         <ParallaxScrollView
             headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
             headerImage={
-                <IconSymbol
-                    size={310}
-                    color="#808080"
-                    name="chevron.left.forwardslash.chevron.right"
-                    style={styles.input}
-                />
+                <Ionicons name="school" size={24} style={styles.input} />
             }>
         <SafeAreaProvider>
             <SafeAreaView>
